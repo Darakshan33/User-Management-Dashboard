@@ -1,0 +1,453 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main app wrapper */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #a7f3d0 0%, #38bdf8 50%, #2563eb 100%);
+  position: relative;
+  overflow: hidden; 
+}
+
+/* Container for animated background balls */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Animated floating balls */
+.ball {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.25); 
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: bounce 6s infinite ease-in-out;
+}
+
+/* Individual ball positioning */
+.ball-1 { top: 5rem; left: 5rem; width: 5rem; height: 5rem; animation-delay: 0s; }
+.ball-2 { top: 5rem; right: 5rem; width: 4rem; height: 4rem; animation-delay: 1.5s; }
+.ball-3 { bottom: 5rem; left: 5rem; width: 6rem; height: 6rem; animation-delay: 3s; }
+.ball-4 { bottom: 5rem; right: 5rem; width: 5rem; height: 5rem; animation-delay: 1s; }
+.ball-5 { top: 50%; left: 2.5rem; width: 3.5rem; height: 3.5rem; animation-delay: 2s; }
+.ball-6 { top: 2.5rem; left: 50%; transform: translateX(-50%); width: 3rem; height: 3rem; animation-delay: 4s; }
+
+/* Bouncing animation for background balls */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Main container for form card */
+.container {
+  width: 100%;
+  max-width: 28rem; 
+  position: relative;
+  z-index: 10; 
+}
+
+/* Main form card */
+.form-card {
+  background: rgba(255, 255, 255, 0.95); 
+  backdrop-filter: blur(10px); 
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Slide up animation */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header section */
+.form-header {
+  background: linear-gradient(135deg, #3b82f6, #2563eb); 
+  color: white;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Hide pseudo-elements */
+.form-header::before,
+.form-header::after {
+  display: none;
+}
+
+/* Main form title with icon */
+.form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+/* User icon in header */
+.user-icon {
+  font-size: 1.5rem;
+}
+
+/* Description text in header */
+.form-description {
+  color: rgba(219, 234, 254, 1);
+  margin-top: 0.5rem;
+}
+
+/* Main form container */
+.form {
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+/* Individual form field groups */
+.form-group {
+  margin-bottom: 1.0rem;
+  opacity: 0; /* Start invisible for animation */
+  animation: slideInLeft 0.6s ease forwards;
+}
+
+/* Slide in from left animation for form fields */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Animation delays for form fields */
+.form-group:nth-child(1) { animation-delay: 0.2s; }
+.form-group:nth-child(2) { animation-delay: 0.4s; }
+.form-group:nth-child(3) { animation-delay: 0.6s; }
+.form-group:nth-child(4) { animation-delay: 0.8s; }
+.form-group:nth-child(5) { animation-delay: 1s; }
+
+/* Two-column layout for DOB and Gender */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* Stack form row on mobile */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form labels with icons */
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; 
+  color: #374151;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Icon in header */
+.label-icon1 {
+  color: white;
+}
+
+/* Icons in form labels */
+.label-icon2 {
+  color: #3b82f6;
+}
+
+/* Base styling for all form inputs */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb; 
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease; 
+  background: white;
+}
+
+/* Hover effects for form inputs */
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover {
+  border-color: #3b82f6; 
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.3); 
+}
+
+/* Focus states */
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #60a5fa; 
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1); 
+}
+
+/* Error state */
+.form-input.error,
+.form-textarea.error,
+.form-select.error {
+  border-color: #ef4444; 
+}
+
+/* Textarea specific */
+.form-textarea {
+  resize: none; 
+  min-height: 100px;
+}
+
+/* Select dropdown */
+.form-select {
+  cursor: pointer;
+  color: #6b7280; 
+}
+
+/* Select option */
+.form-select option {
+  color: #000;
+}
+
+/* Description text */
+.form-description-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Error message */
+.error-message {
+  color: #ef4444; 
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* styling for file inputs */
+.form-input[type="file"] {
+  padding: 0.5rem;
+  border: 2px dashed #e5e7eb;
+  background: #f9fafb; 
+  cursor: pointer;
+  color: #374151;
+}
+
+/* File input hover effect */
+.form-input[type="file"]:hover {
+  border-color: #3b82f6;
+  background: #f0f9ff; 
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* File selector button */
+.form-input[type="file"]::file-selector-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* File selector button hover */
+.form-input[type="file"]::file-selector-button:hover {
+  background-color: #2563eb;
+}
+
+/* Date input */
+.form-input[type="date"] {
+  color: #374151;
+}
+
+/* Date picker icon */
+.form-input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+/* Main submit button */
+.submit-button {
+  width: 100%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Submit button hover effects */
+.submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857); 
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(16, 185, 129, 0.4), 0 0 10px rgba(5, 150, 105, 0.3); 
+}
+
+/* Disabled submit button state */
+.submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading spinner for submit button */
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spin animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Success message card */
+.success-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  padding: 3rem 2rem;
+  text-align: center;
+  animation: scaleIn 0.5s ease-out; 
+}
+
+/* Scale in animation */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Success icon container */
+.success-icon {
+  width: 4rem;
+  height: 4rem;
+  background: #10b981; 
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 2rem;
+  color: white;
+  animation: bounceIn 0.5s ease-out 0.2s both;
+}
+
+/* Bounce in animation for success icon */
+@keyframes bounceIn {
+  from { opacity: 0; transform: scale(0); }
+  50% { transform: scale(1.1); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Success message title */
+.success-title {
+  font-size: 1.5rem;
+  color: #10b981;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Success description text */
+.success-description {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+/* Success message text */
+.success-message {
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+/* Success button (Back to Home) */
+.success-button {
+  width: 100%;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Success button hover effect */
+.success-button:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: scale(1.05);
+}
+
+/* Footer text */
+.footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 640px) {
+  .app {
+    padding: 0.5rem;
+  }
+  
+  .form-header {
+    padding: 1.5rem;
+  }
+  
+  .form {
+    padding: 1.5rem;
+  }
+  
+  .success-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  /* Smaller background balls on mobile */
+  .ball-1, .ball-2, .ball-3, .ball-4, .ball-5, .ball-6 {
+    width: 2rem;
+    height: 2rem;
+  }
+}
